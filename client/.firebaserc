@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "deadpigeon-acfe6",
+    "production": "deadpigeon-acfe6"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

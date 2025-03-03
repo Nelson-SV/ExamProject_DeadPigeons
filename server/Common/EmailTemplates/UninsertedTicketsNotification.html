@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uninserted Tickets Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #ff4d4d;
+        }
+        .user-block {
+            margin-bottom: 20px;
+        }
+        .user-block h2 {
+            margin-bottom: 10px;
+            color: #0073e6;
+        }
+        .tickets {
+            margin-top: 10px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .tickets th, .tickets td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .tickets th {
+            background-color: #0073e6;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Uninserted Automated Tickets Notification</h1>
+    </div>
+
+    
+    <div class="user-block">
+        <h2>User: {{userName}} ({{userEmail}})</h2>
+        <p>
+            Dear {{userName}}, your current balance is <strong>{{balanceValue}}</strong>,
+            which is insufficient to insert the following automated tickets for the game
+            started on <strong>{{currentGameDate}}</strong>.
+        </p>
+
+        <table class="tickets">
+            <thead>
+            <tr>
+                <th>Purchase Date</th>
+                <th>Sequence</th>
+                <th>Price Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each failedToInsertTickets}}
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+  
+
+</div>
+</body>
+</html>

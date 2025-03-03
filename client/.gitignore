@@ -1,0 +1,9 @@
+node_modules/
+.idea/
+.nuget/
+dist/
+*.cache
+out/
+/build/
+dist
+

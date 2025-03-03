@@ -1,0 +1,1 @@
+export {useInitializeData} from "./hooks/index.ts"

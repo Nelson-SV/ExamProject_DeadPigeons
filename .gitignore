@@ -1,0 +1,21 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+.idea/
+*.iml
+3rd_sem_template.sln.DotSettings.user
+Exam_Project.sln.DotSettings.user
+*.log
+*.tlog
+*.wrn
+*.err
+.env
+.env.*.local
+server/API/logs/
+
+# Ignore generated credentials from google-github-actions/auth
+gha-creds-*.json
+
+

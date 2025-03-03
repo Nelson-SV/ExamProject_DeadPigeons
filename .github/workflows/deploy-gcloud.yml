@@ -1,0 +1,51 @@
+name: Deploy to Google Cloud Run
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Create Dockerfile # Adjust paths if necessary
+        run: |
+          cat > Dockerfile << 'EOF'
+          FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+          WORKDIR /src
+          COPY . .
+          RUN dotnet restore "server/API/API.csproj"
+          RUN dotnet publish "server/API/API.csproj" -c Release -o /app/publish
+
+          FROM mcr.microsoft.com/dotnet/aspnet:8.0
+          WORKDIR /app
+          COPY --from=build /app/publish .
+          ENV ASPNETCORE_URLS=http://0.0.0.0:8080
+          EXPOSE 8080
+          ENTRYPOINT ["dotnet", "API.dll"]
+          EOF
+
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v1
+        with:
+          service: ${{ secrets.NAME }}
+          region: europe-north1
+          source: . # Ensure this points to the directory with your Dockerfile
+          env_vars: |-
+            DB=${{ secrets.DB }}
+
+      - name: Show Output
+        run: echo ${{ steps.deploy.outputs.url }}
