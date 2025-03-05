@@ -1,5 +1,7 @@
 # Døde Duer Game Management System 🎯
 
+(./screenshot/DeadPigeons.gif)
+
 ## 📚 Project Overview
 This project is a **web application** developed for a local sports association to digitize and manage their weekly game, Døde Duer.  
 The platform allows players to **purchase tickets, play the game online, and track their history**, while administrators can **manage users, payments, and game sessions** from a single dashboard.
