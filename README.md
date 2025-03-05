@@ -1,7 +1,7 @@
 # Døde Duer Game Management System 🎯
 
 <p align="center">
-    <img src="./screenshot/DeadPigeons.gif" width="600">
+    <img src="./screenshot/DeadPigeons.gif" width="400">
 </p>
 
 ## 📚 Project Overview
